@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1>Funcionários</h1>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-error px-3">
+    {% for category, message in messages %}
+    <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
+        <strong>{{ message }}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Novo Funcionário
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-triangulo" action="{{ url_for('cadastro_funcionario') }}" method="post">
+
+                    <label>
+                        <input placeholder="Digite o nome" name="form-nome" class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite a data de nascimento" name="form-data_nascimento"
+                               class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite o CPF" name="form-cpf" class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite o email" name="form-email" class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite o senha" name="form-senha" class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite o cargo" name="form-cargo" class="form-control">
+                    </label>
+                    <label>
+                        <input placeholder="Digite o salário" name="form-salario" class="form-control">
+                    </label>
+
+
+                    <button type="submit" class="btn btn-info my-2">Cadastrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Salário</th>
+        <th scope="col">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for funcionario in lista_funcionario %}
+    <tr>
+        <th>{{ funcionario.id }}</th>
+        <th>{{ funcionario.nome }}</th>
+        <th>{{ funcionario.data_nascimento }}</th>
+        <th>{{ funcionario.cpf }}</th>
+        <th>{{ funcionario.email }}</th>
+        <th>{{ funcionario.cargo }}</th>
+        <th>{{ funcionario.salario }}</th>
+        <td>
+        <td><a href=""><i class="bi-pencil"></i></a> <a href=""><i class="bi bi-trash"></i></a></td>
+    </tr>
+
+
+
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

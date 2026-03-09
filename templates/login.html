@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Login</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-error px-3">
+    {% for category, message in messages %}
+    <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
+        <strong>{{ message }}</strong>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="login d-flex justify-content-center align-items-center">
+    <form action="{{ url_for('login') }}" method="post">
+        <div class="card_login card">
+            <form class="form d-flex flex-column justify-content-center align-items-center">
+                <label class="my-2">
+                    Email:
+                    <input placeholder="Digite o Email" name="form_email" class="form-control">
+                </label>
+                <label class="my-2">
+                    Senha:
+                    <input placeholder="Digite a senha" type="password" name="form_senha" class="form-control">
+                </label>
+                <button type="submit" class="btn btn-success">Entrar</button>
+            </form>
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastro">
+                Cadastrar Funcionário
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="cadastro" tabindex="-1" aria-labelledby="mostrar1"
+                 aria-hidden="true">
+                <form action="{{ url_for('cadastro_funcionario') }}" method="post">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="mostrar1">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-triangulo" action="{{ url_for('triangulo_perimetro') }}"
+                                      method="post">
+
+                                    <label>
+                                        <input placeholder="Digite o nome" name="form-nome" class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite a data de nascimento" name="form-data_nascimento"
+                                               class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite o CPF" name="form-cpf" class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite o email" name="form-email" class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite o senha" name="form-senha" class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite o cargo" name="form-cargo" class="form-control">
+                                    </label>
+                                    <label>
+                                        <input placeholder="Digite o salário" name="form-salario" class="form-control">
+                                    </label>
+
+
+                                    <button href="{{ url_for('login') }}" type="submit" class="btn btn-info">Cadastrar
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button href="{{ url_for('home') }}" type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Fechar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
