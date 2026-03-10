@@ -28,3 +28,8 @@
 
 <img width="1903" height="904" alt="image" src="https://github.com/user-attachments/assets/840304f9-6e32-4f99-a08f-48bda27d8968" />
 
+## Animais
+
+<img width="1889" height="897" alt="image" src="https://github.com/user-attachments/assets/dfd02610-6267-4552-90db-76b72d345156" />
+
+
